@@ -1,0 +1,23 @@
+name: CPAN upload
+description: Upload a tar.gz archive to CPAN
+inputs:
+  filename:
+    required: true
+    description: the file to upload
+  username:
+    required: true
+    description: your PAUSE username
+  password:
+    required: true
+    description: the password to your PAUSE account
+  dry_run:
+    required: false
+    description: "set '1' if you do not actually upload anything"
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.filename }}
+    - ${{ inputs.username }}
+    - ${{ inputs.password }}
+    - ${{ inputs.dry_run }}
